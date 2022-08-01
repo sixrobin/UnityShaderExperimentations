@@ -1,0 +1,14 @@
+Idées de shaders à faire :
+- Portail qui s'ouvre et mène sur une autre dimension
+- Eau/lave/Cascade
+- Sol par dessus lequel on blend des feuilles/du sable/etc.
+- Outline
+- Remplacement de couleur localisé sur des sprites
+- Shader fantômatique selon la distance à la caméra
+- Toon shader
+- Animation d'un mesh de poisson
+- Tornade
+- Diamant
+- Forcefield
+- Truc dégueu avec des yeux qui s'ouvrent et se ferment avec le temps
+- https://www.febucci.com/2018/09/world-reveal-shader/
