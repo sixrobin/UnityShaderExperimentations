@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EXO_Voronoi
-  m_Shader: {fileID: 4800000, guid: 68c319f88bfbaf8438b64eaf4012f9d6, type: 3}
+  m_Name: EXO_Planet
+  m_Shader: {fileID: 4800000, guid: 07a71c68e9682eb4290714084af21f9a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -48,8 +48,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _IslandStep:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IslandTex:
+        m_Texture: {fileID: 2800000, guid: dfc8fdab799e259488ea09c42b289111, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _LandTex:
+        m_Texture: {fileID: 2800000, guid: dfc8fdab799e259488ea09c42b289111, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: dfc8fdab799e259488ea09c42b289111, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex01:
@@ -89,6 +101,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GroundWaterRatio: 0.51
+    - _GroundWaterSmoothing: 0.03
+    - _IslandStep: 0.647
+    - _LandStep: 0.608
     - _LinesSections: 40
     - _LinesSpeed: 0.7
     - _MaskHardness: 0
@@ -97,11 +113,13 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RotationSpeed: 1
     - _ScanSections: 2
     - _ScanSpeed: 2
     - _ScrBlend: 1
     - _Sections: 15
     - _Sharpness: 4
+    - _ShoreModulo: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 2
@@ -116,11 +134,15 @@ Material:
     - _Color: {r: 0, g: 0.3077016, b: 1, a: 0.25490198}
     - _ColorA: {r: 1, g: 0, b: 0.18721485, a: 1}
     - _ColorB: {r: 0.16214883, g: 0, b: 0.23584908, a: 1}
+    - _ColorGround: {r: 0, g: 0.55049324, b: 1, a: 1}
+    - _ColorShore: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorWater: {r: 0.15294118, g: 0.8196079, b: 0.2392157, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 0, g: 0.44990072, b: 0.9339623, a: 1}
     - _LinesColor: {r: 0, g: 0.18009645, b: 0.9150943, a: 1}
     - _ScanColor: {r: 0, g: 0.0798104, b: 0.6431373, a: 1}
+    - _ShoreColor: {r: 1, g: 1, b: 1, a: 1}
     - _VeinsColorA: {r: 0.1462264, g: 0.75672066, b: 1, a: 1}
     - _VeinsColorB: {r: 0, g: 0.71555567, b: 1, a: 1}
   m_BuildTextureStacks: []

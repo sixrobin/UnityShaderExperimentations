@@ -79,11 +79,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _BurnLine1Width: 0.237
-    - _BurnLine2Width: 0.182
+    - _BurnLine1Width: 0.406
+    - _BurnLine2Width: 0.266
     - _BurnLineWidth: 0.21
-    - _BurnPosition: 0.23
-    - _BurnWidth: 0.69
+    - _BurnPosition: 0.17
+    - _BurnWidth: 0.81
     - _Contrast: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -103,7 +103,7 @@ Material:
     - _ScrBlend: 5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpeedX: 10
+    - _SpeedX: 20
     - _SpeedY: 0
     - _SrcBlend: 3
     - _UVSec: 0
@@ -111,7 +111,7 @@ Material:
     m_Colors:
     - _BurnColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
     - _BurnLine1Color: {r: 0.9716981, g: 0, b: 0.10883018, a: 1}
-    - _BurnLine2Color: {r: 1, g: 0.58626634, b: 0.0990566, a: 1}
+    - _BurnLine2Color: {r: 1, g: 0.6871684, b: 0.09803921, a: 1}
     - _BurnLineColor: {r: 1, g: 0.009995313, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColor: {r: 1, g: 0.95776653, b: 0.740566, a: 1}
