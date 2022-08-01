@@ -10,6 +10,7 @@ Idées de shaders à faire :
 - Animation d'un mesh de poisson
 - Tornade
 - Diamant
+- Fog Dark Souls/Elden Ring
 - Forcefield
 - Truc dégueu avec des yeux qui s'ouvrent et se ferment avec le temps
 - https://www.febucci.com/2018/09/world-reveal-shader/
