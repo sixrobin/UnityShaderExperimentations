@@ -1,4 +1,5 @@
 Idées de shaders à faire :
+- Dissolve selon la distance à la caméra
 - Portail qui s'ouvre et mène sur une autre dimension
 - Eau/lave/Cascade
 - Sol par dessus lequel on blend des feuilles/du sable/etc.
