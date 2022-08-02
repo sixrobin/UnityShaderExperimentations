@@ -106,7 +106,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _VeinsPulseSpeed: 5
-    - _WaterFresnelWidth: 0.66
+    - _WaterFresnelWidth: 0.5
     - _WaterNoiseSharpness: 8
     - _WaveSpeed: 0.05
     - _ZWrite: 1
