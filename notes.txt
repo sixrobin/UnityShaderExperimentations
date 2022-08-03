@@ -13,5 +13,6 @@ Idées de shaders à faire :
 - Fog Dark Souls/Elden Ring
 - Forcefield
 - Pierre avec des craquelures
+- Trou noir
 - Truc dégueu avec des yeux qui s'ouvrent et se ferment avec le temps
 - https://www.febucci.com/2018/09/world-reveal-shader/
