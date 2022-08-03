@@ -28,7 +28,7 @@ Shader "EXO/EXO_Burn"
         [Enum(UnityEngine.Rendering.BlendMode)]
         _ScrBlend ("Source Blend", float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)]
-        _DstBlend ("Source Blend", float) = 1
+        _DstBlend ("Destination Blend", float) = 1
     }
 
     SubShader

@@ -2,7 +2,7 @@ Idées de shaders à faire :
 - Dissolve selon la distance à la caméra
 - Portail qui s'ouvre et mène sur une autre dimension
 - Eau/lave/Cascade
-- Sol par dessus lequel on blend des feuilles/du sable/etc.
+- Objet gelé, avec neige au dessus et stalactites en dessous
 - Outline
 - Remplacement de couleur localisé sur des sprites
 - Shader fantômatique selon la distance à la caméra
@@ -14,5 +14,6 @@ Idées de shaders à faire :
 - Forcefield
 - Pierre avec des craquelures
 - Trou noir
+- Boule à neige
 - Truc dégueu avec des yeux qui s'ouvrent et se ferment avec le temps
 - https://www.febucci.com/2018/09/world-reveal-shader/
