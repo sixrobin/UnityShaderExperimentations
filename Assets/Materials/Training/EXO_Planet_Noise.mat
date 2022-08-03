@@ -103,8 +103,8 @@ Material:
     - _GlossyReflections: 1
     - _GroundWaterRatio: 0.51
     - _GroundWaterSmoothing: 0.03
-    - _IslandStep: 0.647
-    - _LandStep: 0.608
+    - _IslandStep: 0.6
+    - _LandStep: 1
     - _LinesSections: 40
     - _LinesSpeed: 0.7
     - _MaskHardness: 0

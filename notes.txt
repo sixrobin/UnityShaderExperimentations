@@ -10,6 +10,9 @@ Idées de shaders à faire :
 - Animation d'un mesh de poisson
 - Tornade
 - Diamant
+- Soleil
+- Plasma ball
+- Citron avec cutout
 - Fog Dark Souls/Elden Ring
 - Forcefield
 - Pierre avec des craquelures

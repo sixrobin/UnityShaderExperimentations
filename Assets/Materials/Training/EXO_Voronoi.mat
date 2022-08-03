@@ -77,7 +77,7 @@ Material:
     - _AngleOffset: 10
     - _AngleOffsetSpeed: 3.7
     - _BumpScale: 1
-    - _CellDensity: 25
+    - _CellDensity: 30
     - _Contrast: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -101,7 +101,7 @@ Material:
     - _ScanSpeed: 2
     - _ScrBlend: 1
     - _Sections: 15
-    - _Sharpness: 4
+    - _Sharpness: 5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 2
