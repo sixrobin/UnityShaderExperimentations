@@ -85,7 +85,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DisplacementAmount: 0.01
     - _DisplacementSpeed: 0.5
-    - _DisplacementWaves: 5
+    - _DisplacementWaves: 10
     - _DissolveAmount: 0.37
     - _DissolveSmooth: 0.019
     - _DissolveWidth: 0.024
