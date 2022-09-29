@@ -69,6 +69,7 @@ Material:
     - PixelSnap: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DebugMask: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
@@ -82,7 +83,7 @@ Material:
     - _ReplaceColor: 0
     - _ReplaceColorCutoff: 0
     - _SmoothStepA: 0
-    - _SmoothStepB: 0.05
+    - _SmoothStepB: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
