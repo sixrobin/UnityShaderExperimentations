@@ -4,7 +4,6 @@ Idées de shaders à faire :
 - Eau/lave/Cascade
 - Objet gelé, avec neige au dessus et stalactites en dessous
 - Outline
-- Remplacement de couleur localisé sur des sprites
 - Shader fantômatique selon la distance à la caméra
 - Toon shader
 - Animation d'un mesh de poisson
