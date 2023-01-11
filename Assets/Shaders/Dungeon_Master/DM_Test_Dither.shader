@@ -46,7 +46,7 @@ Shader "DM/DM_Test_Dither"
 
             float4 dither(float2 uv)
             {
-                uv *= _ScreenParams.xy;
+                uv *= 1080;
                 
                 float thresholds[16] =
                 {
@@ -71,11 +71,12 @@ Shader "DM/DM_Test_Dither"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float4 dithering = dither(i.uv / _Size);
+                float2 uv_pixelated = floor((i.uv - 1/16.0) * 16) / 16;
                 
+                float4 dithering = dither(i.uv / _Size);
                 dithering = step(_Step, dithering);
                 // dithering = step(i.uv.y, dithering); // Upward dithering.
-                
+
                 return lerp(_ColorA, _ColorB, dithering);
             }
             
