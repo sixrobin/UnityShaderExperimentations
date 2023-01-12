@@ -18,9 +18,6 @@ Shader "DM/DM_Wall"
         [Space(5)]
         [Header(SCREEN DEPTH)]
         [Space(5)]
-        _DepthMultiplier ("Depth Multiplier", float) = 0.1
-        _DepthSmoothCenter ("Depth Smooth Center", Range(0, 0.5)) = 0.5
-        _DepthSmoothValue ("Depth Smooth Value", Range(0, 0.1)) = 0.2
         _DepthColor ("Depth Color", Color) = (0, 0, 0, 1)
     }
     
@@ -66,9 +63,9 @@ Shader "DM/DM_Wall"
             float4 _GradientMask_ST;
             float _GradientMaskStrength;
             
-            half _DepthMultiplier;
-            half _DepthSmoothCenter;
-            half _DepthSmoothValue;
+            uniform half _DepthMultiplier;
+            uniform half _DepthSmoothCenter;
+            uniform half _DepthSmoothValue;
             float4 _DepthColor;
 
             float4 dither(float2 uv)

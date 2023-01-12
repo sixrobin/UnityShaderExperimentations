@@ -4,9 +4,6 @@ Shader "DM/DM_Base"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1)
-        _DepthMultiplier ("Depth Multiplier", float) = 0.1
-        _DepthSmoothCenter ("Depth Smooth Center", Range(0, 1)) = 0.5
-        _DepthSmoothValue ("Depth Smooth Value", Range(0, 1)) = 0.2
         _DepthColor ("Depth Color", Color) = (0, 0, 0, 1)
     }
     
@@ -44,9 +41,10 @@ Shader "DM/DM_Base"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _Color;
-            half _DepthMultiplier;
-            half _DepthSmoothCenter;
-            half _DepthSmoothValue;
+            
+            uniform half _DepthMultiplier;
+            uniform half _DepthSmoothCenter;
+            uniform half _DepthSmoothValue;
             float4 _DepthColor;
             
             v2f vert (appdata v)

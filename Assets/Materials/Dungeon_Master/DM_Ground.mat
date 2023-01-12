@@ -87,7 +87,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthColor: {r: 0.02745098, g: 0, b: 0.03137255, a: 1}
+    - _DepthColor: {r: 0.011764704, g: 0.026355166, b: 0.039215688, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GradientColor: {r: 0.1137255, g: 0.16862746, b: 0.3254902, a: 1}
   m_BuildTextureStacks: []
