@@ -74,7 +74,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GradientAlpha: 1
-    - _GradientMaskStrength: 1
+    - _GradientMaskStrength: 0
     - _GradientScale: 0.5
     - _Metallic: 0
     - _Mode: 0
