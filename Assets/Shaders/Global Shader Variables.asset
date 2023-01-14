@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17,5 +17,5 @@ MonoBehaviour:
   _depthSmoothValue: 0.01
   _CRTCurvature: 8
   _CRTVignetteWidth: 40
-  _CRTScanlinesMultiplier: 1.6
+  _CRTScanlinesMultiplier: 1
   _CRTRBGMultiplier: {x: 0.25, y: 0.2, z: 0.3}

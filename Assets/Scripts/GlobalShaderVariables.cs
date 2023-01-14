@@ -22,7 +22,45 @@ public class GlobalShaderVariables : ScriptableObject
     private static readonly int s_crtScanlinesMultiplier = Shader.PropertyToID("_ScanlinesMultiplier");
     private static readonly int s_crtRGBMultiplier = Shader.PropertyToID("_RGBMultiplier");
 
-    private void OnValidate()
+    private static System.Collections.Generic.List<T> FindAssetsByType<T>() where T : UnityEngine.Object
+    {
+        System.Collections.Generic.List<T> assets = new();
+        string[] guids = UnityEditor.AssetDatabase.FindAssets($"t:{typeof(T)}");
+        
+        for (int i = 0; i < guids.Length; ++i)
+        {
+            string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
+            T asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(assetPath);
+            if (asset != null)
+                assets.Add(asset);
+        }
+        
+        return assets;
+    }
+
+    #if UNITY_EDITOR
+    [UnityEditor.InitializeOnLoadMethod]
+    #endif
+    private static void OnLoad()
+    {
+        System.Collections.Generic.List<GlobalShaderVariables> assets = FindAssetsByType<GlobalShaderVariables>();
+
+        if (assets.Count == 0)
+        {
+            Debug.LogWarning($"No instance of type {nameof(GlobalShaderVariables)} has been found.");
+            return;
+        }
+        
+        if (assets.Count > 1)
+        {
+            Debug.LogError($"More than 1 instance of type {nameof(GlobalShaderVariables)} have been found.");
+            return;
+        }
+        
+        assets[0].UpdateValues();
+    }
+    
+    private void UpdateValues()
     {
         Shader.SetGlobalFloat(s_depthMultiplier, this._depthMultiplier);
         Shader.SetGlobalFloat(s_depthSmoothCenter, this._depthSmoothCenter);
@@ -31,5 +69,10 @@ public class GlobalShaderVariables : ScriptableObject
         Shader.SetGlobalFloat(s_crtVignetteWidth, this._CRTVignetteWidth);
         Shader.SetGlobalFloat(s_crtScanlinesMultiplier, this._CRTScanlinesMultiplier);
         Shader.SetGlobalVector(s_crtRGBMultiplier, this._CRTRBGMultiplier);
+    }
+
+    private void OnValidate()
+    {
+        this.UpdateValues();
     }
 }
