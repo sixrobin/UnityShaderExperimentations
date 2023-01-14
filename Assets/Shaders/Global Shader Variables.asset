@@ -15,7 +15,3 @@ MonoBehaviour:
   _depthMultiplier: 1.4
   _depthSmoothCenter: 0.404
   _depthSmoothValue: 0.01
-  _CRTCurvature: 8
-  _CRTVignetteWidth: 40
-  _CRTScanlinesMultiplier: 1
-  _CRTRBGMultiplier: {x: 0.25, y: 0.2, z: 0.3}

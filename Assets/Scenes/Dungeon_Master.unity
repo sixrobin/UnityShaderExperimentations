@@ -1386,6 +1386,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shader: {fileID: 4800000, guid: 2b48ff10597a96b4c87d99541e990f1b, type: 3}
+  _curvature: 8
+  _vignetteWidth: 40
+  _scanlinesMultiplier: 1
+  _rgbMultiplier: {x: 0.25, y: 0.2, z: 0.3}
 --- !u!1 &702555857
 GameObject:
   m_ObjectHideFlags: 0
