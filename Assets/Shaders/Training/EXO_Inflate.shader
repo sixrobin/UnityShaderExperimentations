@@ -2,8 +2,7 @@ Shader "EXO/EXO_Inflate"
 {
     Properties
     {
-        [Toggle]
-        _NormalizeNormal ("Normalize Normal", float) = 0
+        [Toggle] _NormalizeNormal ("Normalize Normal", float) = 0
         _InflateAmount ("Inflate Amount", Range(0, 1)) = 0
         _InflateSpeed ("Inflate Speed", Range(0, 100)) = 0
     }

@@ -35,16 +35,18 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _DistortionIntensity: 0.007
+    - _DistortionIntensity: 0.0046
     - _DistortionPPU: -1.6
     - _DistortionSize: 4
+    - _DistortionTimeOffset: 0
     - _DistortionWaveIntensity: 0.66
     - _EnableExternalAlpha: 0
-    - _RingsMultiplier: 0.62
-    - _Scale: 1.5
-    - _ScaleHorizontal: -2
-    - _ScaleVertical: 2
-    - _Speed: 2
+    - _RingsMultiplier: 1
+    - _Scale: 2
+    - _ScaleHorizontal: 0
+    - _ScaleVertical: 1
+    - _ShowDistortion: 0
+    - _Speed: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

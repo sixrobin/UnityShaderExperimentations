@@ -3,15 +3,24 @@ Shader "Sprites/Distortion"
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+
+	    [Space(5)]
     	
     	[Header(PLASMA DISTORTION)]
+    	[Space(5)]
+	    [Toggle] _ShowDistortion ("Show Distortion", float) = 0
 	    _Scale ("Scale", float) = 1
         _ScaleHorizontal ("Scale Horizontal", float) = 1
         _ScaleVertical ("Scale Vertical", float) = 1
         _Speed ("Speed", float) = 1
         _RingsMultiplier ("Rings Multiplier", Range(0, 10)) = 1
         _DistortionIntensity ("Distortion Intensity", Range(0, 0.1)) = 0.1
+    	[PerRendererData] _DistortionTimeOffset ("Distortion Time Offset", float) = 0
     	
+	    [Space(5)]
+
+	    [Header(SPRITE DEFAULT DATA)]
+	    [Space(5)]
         _Color ("Tint", Color) = (1, 1, 1, 1)
         [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1, 1, 1, 1)
@@ -48,17 +57,19 @@ Shader "Sprites/Distortion"
             #pragma multi_compile_instancing
             #pragma multi_compile_local _ PIXELSNAP_ON
             #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
-
+            #pragma shader_feature _SHOWDISTORTION_ON
+            
             half _Scale;
             half _ScaleHorizontal;
             half _ScaleVertical;
             half _Speed;
             half _RingsMultiplier;
             half _DistortionIntensity;
+            half _DistortionTimeOffset;
 
             float3 Plasma(float2 uv)
             {
-                const float time = _Time.y * _Speed;
+                const float time = _Time.y * _Speed + _DistortionTimeOffset;
 
                 uv = uv * _Scale - _Scale * 0.5;
                 
@@ -82,7 +93,10 @@ Shader "Sprites/Distortion"
 			    float2 uv = i.texcoord;
 				
 				float3 plasma = Plasma(uv);
-				// return float4(plasma, 1); // TODO: Debug toggle to visualize plasma.
+
+				#if _SHOWDISTORTION_ON
+				return float4(plasma, 1);
+				#endif
 				
 				fixed4 sprite = SampleSpriteTexture(uv + plasma.r * _DistortionIntensity);
 
