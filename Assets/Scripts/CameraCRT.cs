@@ -8,8 +8,8 @@ public class CameraCRT : MonoBehaviour
     [SerializeField] private Shader _shader = null;
 
     [Header("DATA")]
-    [SerializeField, Range(1f, 30f)] private float _curvature = 5f;
-    [SerializeField, Range(0f, 100f)] private float _vignetteWidth = 100f;
+    [SerializeField, Range(1f, 30f)] private float _curvature = 8f;
+    [SerializeField, Range(0f, 100f)] private float _vignetteWidth = 50f;
     [SerializeField, Range(0.5f, 3f)] private float _scanlinesMultiplier = 1f;
     [SerializeField] private Vector3 _rgbMultiplier = new(0.25f, 0.2f, 0.3f);
     
