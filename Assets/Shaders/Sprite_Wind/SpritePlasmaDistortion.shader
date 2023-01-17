@@ -1,4 +1,4 @@
-Shader "Sprites/Distortion"
+Shader "Sprites/Distortion/Plasma"
 {
     Properties
     {
@@ -105,9 +105,9 @@ Shader "Sprites/Distortion"
 
 				#if _SHOWDISTORTION_ON
 				return float4(plasma, 1);
-				#endif
-				
+				#else
 				return color;
+				#endif
 			}
             
             ENDCG
