@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpriteDistortionRandomizer : MonoBehaviour
 {
-    [SerializeField] private Vector2 _randomRange = Vector2.zero;
+    [SerializeField] private Vector2 _randomRange = new(0f, 1f);
 
     private static readonly int DistortionTimeOffset = Shader.PropertyToID("_DistortionTimeOffset");
 
