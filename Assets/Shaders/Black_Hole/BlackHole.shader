@@ -58,10 +58,10 @@ Shader "BlackHole"
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
-                float3 normal : TEXCOORD1;
-                float3 view_direction : TEXCOORD2;
-                float3 screen_position : TEXCOORD3;
-                float4 grab_position : TEXCOORD4;
+                float3 normal : NORMAL;
+                float3 view_direction : TEXCOORD1;
+                float3 screen_position : TEXCOORD2;
+                float4 grab_position : TEXCOORD3;
             };
 
             sampler2D _BackgroundTexture;

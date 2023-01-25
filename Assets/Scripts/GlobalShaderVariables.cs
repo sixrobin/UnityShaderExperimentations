@@ -12,6 +12,19 @@ public class GlobalShaderVariables : ScriptableObject
     private static readonly int s_depthSmoothCenter = Shader.PropertyToID("_DepthSmoothCenter");
     private static readonly int s_depthSmoothValue = Shader.PropertyToID("_DepthSmoothValue");
 
+    private void UpdateValues()
+    {
+        Shader.SetGlobalFloat(s_depthMultiplier, this._depthMultiplier);
+        Shader.SetGlobalFloat(s_depthSmoothCenter, this._depthSmoothCenter);
+        Shader.SetGlobalFloat(s_depthSmoothValue, this._depthSmoothValue);
+    }
+
+    private void OnValidate()
+    {
+        this.UpdateValues();
+    }
+    
+    #if UNITY_EDITOR
     private static System.Collections.Generic.List<T> FindAssetsByType<T>() where T : UnityEngine.Object
     {
         System.Collections.Generic.List<T> assets = new();
@@ -28,9 +41,7 @@ public class GlobalShaderVariables : ScriptableObject
         return assets;
     }
 
-    #if UNITY_EDITOR
     [UnityEditor.InitializeOnLoadMethod]
-    #endif
     private static void OnLoad()
     {
         System.Collections.Generic.List<GlobalShaderVariables> assets = FindAssetsByType<GlobalShaderVariables>();
@@ -49,16 +60,5 @@ public class GlobalShaderVariables : ScriptableObject
         
         assets[0].UpdateValues();
     }
-    
-    private void UpdateValues()
-    {
-        Shader.SetGlobalFloat(s_depthMultiplier, this._depthMultiplier);
-        Shader.SetGlobalFloat(s_depthSmoothCenter, this._depthSmoothCenter);
-        Shader.SetGlobalFloat(s_depthSmoothValue, this._depthSmoothValue);
-    }
-
-    private void OnValidate()
-    {
-        this.UpdateValues();
-    }
+    #endif
 }

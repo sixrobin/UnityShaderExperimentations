@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Black_Hole.unity
+    guid: 9604e04649d7bdf429d2fcbef1946f3e
   m_configObjects: {}
