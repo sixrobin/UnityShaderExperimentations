@@ -61,7 +61,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistortionPower: 3.4
+    - _DistortionPower: 2.87
     - _DstBlend: 0
     - _FadeIntensity: 6.9
     - _FadeSmoothness: 0.091
@@ -71,7 +71,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HoleSmoothness: 0.014
-    - _HoleWidth: 0.17
+    - _HoleWidth: 0.192
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1

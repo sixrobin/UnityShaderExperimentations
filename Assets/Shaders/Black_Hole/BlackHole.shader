@@ -14,6 +14,7 @@ Shader "BlackHole"
         Tags
         {
             "RenderType"="Opaque"
+            "Queue"="Transparent"
         }
         
         LOD 100
