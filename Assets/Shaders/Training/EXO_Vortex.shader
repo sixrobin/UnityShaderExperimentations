@@ -5,7 +5,7 @@ Shader "EXO/EXO_Vortex"
         [Header(TWIRL (BASE))]
         [Space(5)]
         _MainTex ("Twirl Texture", 2D) = "white" {}
-        _TwirlStrength ("Twirl Strength", Range(0, 20)) = 1
+        _TwirlStrength ("Twirl Strength", Range(-20, 20)) = 1
         _RotationSpeed ("Rotation Speed", Range(-20, 20)) = 0
         [IntRange] _RadialMaskSharpness ("Radial Mask Sharpness", Range(1, 5)) = 1
         
@@ -21,7 +21,7 @@ Shader "EXO/EXO_Vortex"
         [Header(CENTER)]
         [Space(5)]
         _CenterColor ("Center Color", Color) = (1,0,0,1)
-        _CenterRadius ("Center Radius", Range(0.001, 0.5)) = 0.3
+        _CenterRadius ("Center Radius", Range(0.001, 1)) = 0.3
         _CenterSharpness ("Center Sharpness", Range(1, 5)) = 1
         
         [Space(15)]
@@ -43,7 +43,7 @@ Shader "EXO/EXO_Vortex"
         }
         
         Blend [_ScrBlend] [_DstBlend]
-        LOD 100
+        Cull Off
 
         Pass
         {
@@ -105,13 +105,14 @@ Shader "EXO/EXO_Vortex"
                 float radial_distance = length(uv_centered);
 
                 // Center.
-                float4 col_center = _CenterColor * saturate(1 - pow(radial_distance / _CenterRadius, _CenterSharpness));
+                float center_mask = saturate(1 - pow(radial_distance / _CenterRadius, _CenterSharpness));
+                float4 col_center = _CenterColor * center_mask;
                 
                 // Twirl.
                 float2 uv_twirl = twirl(i.uv, 0.5, _TwirlStrength, 0, _Time.y * _RotationSpeed);
                 fixed4 tex_twirl = tex2D(_MainTex, uv_twirl);
                 tex_twirl = saturate(tex_twirl * (1 - pow(radial_distance, _RadialMaskSharpness)));
-                fixed4 col_twirl = saturate(pow(tex_twirl, 2)) * (lerp(_TwirlColorA, _TwirlColorB, radial_distance));
+                fixed4 col_twirl = saturate(pow(tex_twirl, 2)) * (lerp(_TwirlColorA, _TwirlColorB, radial_distance)) * (1 - center_mask);
                 
                 // Final color.
                 return col_twirl + col_center;
