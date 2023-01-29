@@ -59,16 +59,17 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _CapsFadePercentage: 0.823
-    - _CapsFadeSmooth: 0.415
-    - _Cutoff: 0.195
-    - _CutoffSmooth: 0.243
+    - _CapsFadePercentage: 0.389
+    - _CapsFadeSmooth: 0.086
+    - _Cutoff: 0.374
+    - _CutoffSmooth: 0.468
     - _DetailNormalMapScale: 1
     - _DistortionPower: 2.87
     - _DstBlend: 0
     - _FadeIntensity: 6.9
     - _FadeSmoothness: 0.091
     - _FadeWidth: 0.49
+    - _FresnelMaskPower: 1.69
     - _FresnelPower: 4.05
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -79,7 +80,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RotationSpeed: 3
+    - _RotationSpeed: 0.5
     - _ScrBlend: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

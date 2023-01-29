@@ -64,13 +64,13 @@ Material:
     - _DistortionPower: 4.52
     - _DstBlend: 0
     - _FadeIntensity: 6.9
-    - _FadeSmoothness: 0.174
-    - _FadeWidth: 0.387
+    - _FadeSmoothness: 0.224
+    - _FadeWidth: 0.36
     - _FresnelPower: 4.05
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HoleSmoothness: 0.014
+    - _HoleSmoothness: 0.025
     - _HoleWidth: 0.302
     - _Metallic: 0
     - _Mode: 0

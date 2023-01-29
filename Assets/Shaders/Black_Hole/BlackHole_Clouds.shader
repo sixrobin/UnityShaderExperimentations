@@ -9,6 +9,7 @@ Shader "BlackHole/Clouds"
         _Color ("Color", Color) = (1, 1, 1, 1)
         _CapsFadePercentage ("Caps Fade Percentage", Range(0, 1)) = 0.3
         _CapsFadeSmooth ("Caps Fade Smooth", Range(0, 0.5)) = 0.2
+        _FresnelMaskPower ("Fresnel Mask Power", Range(0, 5)) = 2
         
         [Header(BLEND)]
         [Space(5)]
@@ -40,6 +41,7 @@ Shader "BlackHole/Clouds"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 normal : NORMAL;
             };
 
             struct v2f
@@ -47,6 +49,8 @@ Shader "BlackHole/Clouds"
                 float2 uv : TEXCOORD0;
                 float2 uv_caps : TEXCOORD1;
                 float4 vertex : SV_POSITION;
+                float3 normal : NORMAL;
+                float3 view_direction : TEXCOORD2;
             };
 
             sampler2D _MainTex;
@@ -57,6 +61,7 @@ Shader "BlackHole/Clouds"
             half _RotationSpeed;
             half _CapsFadePercentage;
             half _CapsFadeSmooth;
+            half _FresnelMaskPower;
 
             float compute_fresnel(const float3 normal, const float3 view_direction, const float power)
             {
@@ -83,24 +88,30 @@ Shader "BlackHole/Clouds"
             v2f vert(appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(rotate(v.vertex));
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.uv_caps = v.uv;
+                o.normal = UnityObjectToWorldNormal(v.normal);
+                o.view_direction = normalize(WorldSpaceViewDir(v.vertex));
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                // Fresnel.
+                float fresnel = compute_fresnel(i.normal, i.view_direction, _FresnelMaskPower);
 
                 // Caps fade.
                 float caps_mask = remap(i.uv_caps.y, float2(0, 1), float2(-1, 1));
                 caps_mask = saturate(abs(caps_mask));
                 caps_mask = smoothstep(caps_mask - _CapsFadeSmooth, caps_mask + _CapsFadeSmooth, _CapsFadePercentage);
-                
+
+                fixed4 col = tex2D(_MainTex, i.uv + float2(_Time.y * _RotationSpeed, 0));
                 col = smoothstep(_Cutoff - _CutoffSmooth, _Cutoff + _CutoffSmooth, col);
-                col *= _Color * _Color.a * caps_mask;
-                
+                col += (1 - caps_mask) + fresnel;
+                col *= _Color * _Color.a;
+                col = saturate(col);
+
                 return col;
             }
             

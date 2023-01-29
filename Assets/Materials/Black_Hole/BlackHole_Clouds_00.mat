@@ -62,7 +62,7 @@ Material:
     - _CapsFadePercentage: 0.647
     - _CapsFadeSmooth: 0
     - _Cutoff: 1
-    - _CutoffSmooth: 0.505
+    - _CutoffSmooth: 0.66
     - _DetailNormalMapScale: 1
     - _DistortionPower: 2.87
     - _DstBlend: 1
