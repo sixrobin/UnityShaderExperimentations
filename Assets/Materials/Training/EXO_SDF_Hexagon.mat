@@ -66,11 +66,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _InnerGlowSmooth: 4.54
+    - _InnerGlowWidth: 0.105
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineSmooth: 0.96
-    - _OutlineWidth: 0.114
+    - _OutlineSmooth: 1.33
+    - _OutlineWidth: 0.0095
     - _Parallax: 0.02
     - _Radius: 1
     - _Size: 0.5
@@ -82,5 +84,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _InnerGlowColor: {r: 0.50980395, g: 0.32139727, b: 0.19215685, a: 0.8509804}
+    - _OutlineColor: {r: 0.1792453, g: 0.09929134, b: 0.07214904, a: 1}
   m_BuildTextureStacks: []

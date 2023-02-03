@@ -67,8 +67,11 @@ Shader "Sprites/Distortion/Rotated"
 
 			float2 rotate_uv(float2 uv, const float rotation, float2 mid)
 			{
-			    return float2(cos(rotation) * (uv.x - mid.x) + sin(rotation) * (uv.y - mid.y) + mid.x,
-							  cos(rotation) * (uv.y - mid.y) - sin(rotation) * (uv.x - mid.x) + mid.y);
+				float c = cos(rotation);
+				float s = sin(rotation);
+				
+			    return float2(c * (uv.x - mid.x) + s * (uv.y - mid.y) + mid.x,
+							  c * (uv.y - mid.y) - s * (uv.x - mid.x) + mid.y);
 			}
             
 			fixed4 frag(v2f i) : SV_Target
