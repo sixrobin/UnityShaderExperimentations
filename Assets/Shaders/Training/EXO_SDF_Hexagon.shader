@@ -19,6 +19,11 @@ Shader "EXO/SDF/Hexagon"
         _InnerGlowColor ("Inner Glow Color", Color) = (1,1,1,1)
         _InnerGlowWidth ("Inner Glow Width", Range(0, 1)) = 0.1
         _InnerGlowSmooth ("Inner Glow Smooth", Range(0, 10)) = 1
+        
+        [Header(GENERAL)]
+        [Space(5)]
+        _DissolveMask ("Dissolve Mask", 2D) = "white" {}
+        _DissolveAmount ("Dissolve Amount", Range(0, 1)) = 0
     }
     
     SubShader
@@ -39,7 +44,7 @@ Shader "EXO/SDF/Hexagon"
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #define HEX_RATIO 1.73205
+            #define HEX_RATIO 1.73205 // sqrt(3)
             #define DEG_2_RAD 0.01745
 
             struct appdata
@@ -70,14 +75,11 @@ Shader "EXO/SDF/Hexagon"
             half _InnerGlowWidth;
             half _InnerGlowSmooth;
 
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
-                return o;
-            }
-
+            // Dissolve.
+            sampler2D _DissolveMask;
+            float4 _DissolveMask_ST;
+            half _DissolveAmount;
+            
             float2 rotate_uv(const float2 uv, const float theta)
             {
                 float c = cos(theta * DEG_2_RAD);
@@ -105,7 +107,15 @@ Shader "EXO/SDF/Hexagon"
                 return 1 - smoothstep(hex_dist - smoothstep_width, hex_dist + smoothstep_width, (1 - width) * 0.5 * 1.73);
             }
             
-            fixed4 frag (v2f i) : SV_Target
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+            
+            fixed4 frag(v2f i) : SV_Target
             {
                 // Hexagonal SDF and masks.
                 float radius = _Diameter * 0.5;
