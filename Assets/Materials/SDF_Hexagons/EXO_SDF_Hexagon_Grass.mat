@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EXO_SDF_Hexagon
+  m_Name: EXO_SDF_Hexagon_Grass
   m_Shader: {fileID: 4800000, guid: add4b7563c7986b4f96bc1d807ee7310, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8eae95f0410a9b148b9a1fe3782d9709, type: 3}
+        m_Texture: {fileID: 2800000, guid: 98b3e2e17b743de4c83852905aea4d74, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,15 +66,17 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _InnerGlowSmooth: 4.54
-    - _InnerGlowWidth: 0.105
+    - _InnerGlowSmooth: 9.25
+    - _InnerGlowWidth: 0.055
+    - _MainTextureRotation: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineSmooth: 1.33
+    - _OutlineSmooth: 0.5
     - _OutlineWidth: 0.0095
     - _Parallax: 0.02
     - _Radius: 1
+    - _Rotation: 0
     - _Size: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -84,6 +86,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _InnerGlowColor: {r: 0.50980395, g: 0.32139727, b: 0.19215685, a: 0.8509804}
-    - _OutlineColor: {r: 0.1792453, g: 0.09929134, b: 0.07214904, a: 1}
+    - _InnerGlowColor: {r: 0.20754719, g: 0.16792612, b: 0.105078906, a: 0.36078432}
+    - _OutlineColor: {r: 0.17949297, g: 0.18039216, b: 0.07058824, a: 1}
   m_BuildTextureStacks: []
