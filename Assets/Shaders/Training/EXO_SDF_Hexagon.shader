@@ -107,14 +107,12 @@ Shader "EXO/SDF/Hexagon"
             
             fixed4 frag (v2f i) : SV_Target
             {
-                // TODO: Inner glow and outline masks should handle varying diameter.
-                
                 // Hexagonal SDF and masks.
                 float radius = _Diameter * 0.5;
                 float hex_dist = hexagonal_distance((i.uv - 0.5) * 2);
                 float hex_mask = step(hex_dist, radius * HEX_RATIO);
-                float inner_glow_mask = compute_mask(hex_dist, _InnerGlowWidth, _InnerGlowSmooth);
-                float outline_mask = compute_mask(hex_dist, _OutlineWidth, _OutlineSmooth);
+                float inner_glow_mask = compute_mask(hex_dist / _Diameter, _InnerGlowWidth, _InnerGlowSmooth);
+                float outline_mask = compute_mask(hex_dist / _Diameter, _OutlineWidth, _OutlineSmooth);
 
                 // Main texture.
                 float4 main_tex = tex2D(_MainTex, rotate_uv(i.uv, _MainTextureRotation, 0.5));
