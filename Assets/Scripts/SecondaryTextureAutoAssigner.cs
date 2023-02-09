@@ -5,7 +5,7 @@ using System.Linq;
 
 public static class SecondaryTextureAutoAssigner
 {
-    [MenuItem("USB/Auto assign color swap masks")]
+    [MenuItem("Tools/Auto assign color swap masks")]
     private static void Test()
     {
         string path = string.Empty;
@@ -28,9 +28,15 @@ public static class SecondaryTextureAutoAssigner
         if (Directory.Exists(path))
         {
             Debug.Log($"Folder ({path}).");
-
+            
             TextureData[] texturesData = GetAssetsAtPath(path);
             AssignColorSwapMasks(texturesData);
+
+            foreach (string subfolder in Directory.GetDirectories(path))
+            {
+                TextureData[] subfolderTexturesData = GetAssetsAtPath(subfolder);
+                AssignColorSwapMasks(subfolderTexturesData);
+            }
         }
         else
         {
