@@ -124,7 +124,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 23ba094ae595367448a793b146f4eaf3, type: 3}
+      name: _ColorSwapMask
     nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0

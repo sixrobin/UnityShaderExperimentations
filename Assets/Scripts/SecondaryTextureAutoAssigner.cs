@@ -29,8 +29,8 @@ public static class SecondaryTextureAutoAssigner
         {
             Debug.Log($"Folder ({path}).");
 
-            System.Collections.Generic.IEnumerable<Texture2D> textures = GetAssetsAtPath<Texture2D>(path);
-            AssignColorSwapMasks(textures.ToArray());
+            TextureData[] texturesData = GetAssetsAtPath(path);
+            AssignColorSwapMasks(texturesData);
         }
         else
         {
@@ -38,26 +38,48 @@ public static class SecondaryTextureAutoAssigner
         }
     }
 
-    private static void AssignColorSwapMasks(Texture2D[] textures)
+    private static void AssignColorSwapMasks(TextureData[] texturesData)
     {
         const string colorSwapMaskSuffix = "_ColorSwapMask";
-        System.Collections.Generic.Dictionary<Texture2D, Texture2D> texturesMasks = new();
-        
-        foreach (Texture2D texture in textures)
-            if (!texture.name.Contains(colorSwapMaskSuffix))
-                texturesMasks.Add(texture, textures.FirstOrDefault(o => o.name == $"{texture.name}{colorSwapMaskSuffix}"));
+        System.Collections.Generic.Dictionary<TextureImporter, Texture2D> texturesMasks = new();
 
-        foreach (System.Collections.Generic.KeyValuePair<Texture2D, Texture2D> textureMask in texturesMasks)
+        foreach (TextureData textureData in texturesData)
         {
-            // TODO: Bind texture and color swap mask.
+            if (textureData.Texture.name.Contains(colorSwapMaskSuffix))
+                continue;
+            
+            texturesMasks.Add(textureData.Importer, texturesData.FirstOrDefault(o => o.Texture.name == $"{textureData.Texture.name}{colorSwapMaskSuffix}").Texture);
+        }
+
+        foreach ((TextureImporter importer, Texture2D texture) in texturesMasks)
+        {
+            SecondarySpriteTexture[] secondarySpriteTextures =
+            {
+                new()
+                {
+                    name = "_ColorSwapMask",
+                    texture = texture
+                }
+            };
+            
+            importer.secondarySpriteTextures = secondarySpriteTextures;
+            EditorUtility.SetDirty(importer);
+            importer.SaveAndReimport();
         }
     }
+
+    private struct TextureData
+    {
+        public Texture2D Texture;
+        public TextureImporter Importer;
+    }
     
-    private static System.Collections.Generic.IEnumerable<T> GetAssetsAtPath<T>(string path) where T : Object
+    private static TextureData[] GetAssetsAtPath(string path)
     {
         path = path.Remove(0, 7);
+
+        System.Collections.Generic.List<TextureData> result = new();
         
-        System.Collections.ArrayList arrayList = new();
         string[] fileEntries = Directory.GetFiles(Application.dataPath + "/" + path);
         
         foreach (string fileEntry in fileEntries)
@@ -65,23 +87,19 @@ public static class SecondaryTextureAutoAssigner
             int assetsIndex = fileEntry.IndexOf("Assets", System.StringComparison.Ordinal);
             string localPath = fileEntry[assetsIndex..];
 
-            T asset = (T)AssetDatabase.LoadAssetAtPath(localPath, typeof(T));
- 
+            Texture2D asset = AssetDatabase.LoadAssetAtPath(localPath, typeof(Texture2D)) as Texture2D;
             TextureImporter importer = AssetImporter.GetAtPath(localPath) as TextureImporter;
-            if (importer != null)
-            {
-                Debug.LogError(importer.name, importer);
-            }
             
-            if (asset != null)
-                arrayList.Add(asset);
+            if (asset != null && importer != null)
+            {
+                result.Add(new TextureData
+                {
+                    Texture = asset,
+                    Importer = importer
+                });
+            }
         }
-        
-        T[] result = new T[arrayList.Count];
-        
-        for (int i = 0; i < arrayList.Count; ++i)
-            result[i] = (T)arrayList[i];
            
-        return result;
+        return result.ToArray();
     }
 }
