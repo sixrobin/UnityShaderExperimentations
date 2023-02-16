@@ -1,0 +1,3 @@
+[submodule "Assets/Rslib"]
+	path = Assets/Rslib
+	url = https://github.com/sixrobin/RSLib.git
