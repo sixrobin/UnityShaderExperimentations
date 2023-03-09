@@ -58,7 +58,7 @@ Shader "EXO/EXO_Lighting_Fresnel"
                 o.vertex_world = mul(unity_ObjectToWorld, v.vertex);
                 return o;
             }
-
+            
             fixed4 frag(v2f i) : SV_Target
             {
                 float4 col = tex2D(_MainTex, i.uv);
