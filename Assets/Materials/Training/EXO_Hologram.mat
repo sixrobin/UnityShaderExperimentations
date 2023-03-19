@@ -87,7 +87,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _LinesSections: 50
-    - _LinesSpeed: 0.7
+    - _LinesSpeed: 0.4
     - _MaskHardness: 0
     - _MaskSections: 2
     - _Metallic: 0
@@ -95,7 +95,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ScanSections: 3
-    - _ScanSpeed: 2
+    - _ScanSpeed: 1.2
     - _ScrBlend: 1
     - _Sections: 15
     - _SmoothnessTextureChannel: 0
