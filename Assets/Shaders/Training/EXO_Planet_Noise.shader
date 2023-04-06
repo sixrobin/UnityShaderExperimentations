@@ -36,16 +36,16 @@ Shader "EXO/EXO_Planet_Noise"
             
             struct appdata
             {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float4 vertex     : POSITION;
+                float2 uv         : TEXCOORD0;
                 float2 uv_islands : TEXCOORD1;
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
+                float2 uv         : TEXCOORD0;
                 float2 uv_islands : TEXCOORD1;
-                float4 vertex : SV_POSITION;
+                float4 vertex     : SV_POSITION;
             };
             
             sampler2D _LandTex;
