@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 26377922}
   - component: {fileID: 26377921}
   - component: {fileID: 26377920}
+  - component: {fileID: 26377923}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -158,8 +159,8 @@ Camera:
   m_GameObject: {fileID: 26377919}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -175,7 +176,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -200,13 +201,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26377919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &26377923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26377919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49627508eb38a734d85bed2e96c653a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 26377921}
+  ZoomedInSize: 0.05
+  ZoomedOutSize: 5
+  ZoomDuration: 5
 --- !u!1 &1074654132
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,30 +235,14 @@ GameObject:
   - component: {fileID: 1074654136}
   - component: {fileID: 1074654135}
   - component: {fileID: 1074654134}
-  - component: {fileID: 1074654133}
+  - component: {fileID: 1074654137}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: GameOfLife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1074654133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1074654132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ce84241a724fd542bc6d6134695ae82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _computeShader: {fileID: 7200000, guid: 234381c65f336424690883190620e856, type: 3}
-  _colorTex: {fileID: 2800000, guid: 88d3d7fb77b620b4191bf5d20e5b7eb9, type: 3}
-  _mainTex: {fileID: 0}
-  _renderer: {fileID: 1074654134}
 --- !u!23 &1074654134
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -262,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3a2e65d2e4504894ab03b590f0d7ca85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -301,12 +302,29 @@ Transform:
   m_GameObject: {fileID: 1074654132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 9.381183, y: 9.381183, z: 9.381183}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074654137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074654132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded4e4f79caf0b246b71d8fccabe7bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomComputeShader: {fileID: 7200000, guid: e073f86b798f2644b9d37086024d29c5, type: 3}
+  _gameOfLifeComputeShader: {fileID: 7200000, guid: 839354210e404d04ba081ae3e6a2183f, type: 3}
+  _renderer: {fileID: 1074654134}
+  _resolution: 16384
+  _iterationDelay: 0.05
 --- !u!1 &2119996664
 GameObject:
   m_ObjectHideFlags: 0

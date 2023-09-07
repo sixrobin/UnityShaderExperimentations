@@ -1,0 +1,39 @@
+#pragma kernel IterateGOL
+#pragma kernel ApplyBuffer
+
+RWTexture2D<float4> Result;
+sampler2D GridBuffer;
+float Resolution;
+
+[numthreads(8,8,1)]
+void IterateGOL(uint3 id : SV_DispatchThreadID)
+{
+    float4 pos = float4(id.x / Resolution, id.y / Resolution, 0, 0);
+    float state = tex2Dlod(GridBuffer, pos).r;
+    float delta = 1.0 / Resolution;
+    
+    float neighbours = 0;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(-delta, -delta, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(-delta, 0, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(-delta, delta, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(0, delta, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(delta, delta, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(delta, 0, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(delta, -delta, 0, 0)).x;
+    neighbours += tex2Dlod(GridBuffer, pos + float4(0, -delta, 0, 0)).x;
+
+    if (neighbours == 3 || neighbours == 2 && state == 1)
+        state = 1;
+    else
+        state = 0;
+    
+    Result[id.xy] = float4(state.xxx, 1);
+}
+
+[numthreads(8,8,1)]
+void ApplyBuffer(uint3 id : SV_DispatchThreadID)
+{
+    float4 pos = float4(id.x / Resolution, id.y / Resolution, 0, 0);
+    float4 buffer = tex2Dlod(GridBuffer, pos);
+    Result[id.xy] = buffer;
+}
