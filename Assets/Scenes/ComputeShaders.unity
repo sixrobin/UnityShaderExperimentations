@@ -263,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a2e65d2e4504894ab03b590f0d7ca85, type: 2}
+  - {fileID: 2100000, guid: 934d4db1523387e4a814667c04368937, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,8 +323,40 @@ MonoBehaviour:
   _randomComputeShader: {fileID: 7200000, guid: e073f86b798f2644b9d37086024d29c5, type: 3}
   _gameOfLifeComputeShader: {fileID: 7200000, guid: 839354210e404d04ba081ae3e6a2183f, type: 3}
   _renderer: {fileID: 1074654134}
-  _resolution: 16384
-  _iterationDelay: 0.05
+  _randomStep: 0.15
+  _resolution: 256
+  _iterationDelay: 0.005
+  _decayStep: 0.002
+  _iterations: 0
+  _gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0.5851397, b: 0, a: 1}
+    key2: {r: 0.1137255, g: 0.20876588, b: 0.24705882, a: 0}
+    key3: {r: 0.08464127, g: 0.06897472, b: 0.09433961, a: 0}
+    key4: {r: 0.007843137, g: 0.07614957, b: 0.12156863, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 4626
+    ctime1: 16191
+    ctime2: 43369
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 65150
+    ctime6: 65150
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
 --- !u!1 &2119996664
 GameObject:
   m_ObjectHideFlags: 0

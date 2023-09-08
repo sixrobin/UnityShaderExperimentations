@@ -1,6 +1,7 @@
 #pragma kernel CSMain
 
 RWTexture2D<float4> Result;
+float Step;
 
 float random(float2 range)
 {
@@ -10,5 +11,5 @@ float random(float2 range)
 [numthreads(8,8,1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    Result[id.xy] = float4(step(random(id.xy), 0.5).xxx, 1);
+    Result[id.xy] = float4(step(random(id.xy), Step).xxx, 1);
 }
