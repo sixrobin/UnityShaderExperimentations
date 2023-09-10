@@ -224,6 +224,138 @@ MonoBehaviour:
   ZoomedInSize: 0.05
   ZoomedOutSize: 5
   ZoomDuration: 5
+--- !u!1 &1015046485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015046489}
+  - component: {fileID: 1015046488}
+  - component: {fileID: 1015046487}
+  - component: {fileID: 1015046486}
+  m_Layer: 0
+  m_Name: Seeds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1015046486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015046485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c474025ba28644cbae8b54d00a9a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _computeShader: {fileID: 7200000, guid: e2c830de3287dea498445730d71e4b89, type: 3}
+  _renderer: {fileID: 1015046487}
+  _resolution: 256
+  _wrapMode: 0
+  _iterationDelay: 0.005
+  _decayStep: 0.05
+  _gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0.6367924, g: 1, b: 0.661187, a: 1}
+    key2: {r: 1, g: 0.60326093, b: 0, a: 0}
+    key3: {r: 0.6792453, g: 0.2210751, b: 0.13777146, a: 0}
+    key4: {r: 0.18867922, g: 0.07386969, b: 0.13127445, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 193
+    ctime1: 10409
+    ctime2: 25636
+    ctime3: 49730
+    ctime4: 65342
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  _randomStep: 0.0001
+--- !u!23 &1015046487
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015046485}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 934d4db1523387e4a814667c04368937, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1015046488
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015046485}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1015046489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015046485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0000009536743, y: 9.381183, z: 5.7443175e-16}
+  m_LocalScale: {x: 9.381183, y: 9.381183, z: 9.381183}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018450101
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _computeShader: {fileID: 7200000, guid: 28106a9514c292d498077555861a4f42, type: 3}
   _renderer: {fileID: 1018450103}
-  _resolution: 256
+  _resolution: 128
   _wrapMode: 0
   _iterationDelay: 0.01
   _decayStep: 1
@@ -265,16 +397,16 @@ MonoBehaviour:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
     key1: {r: 0.28454673, g: 0.9150943, b: 0.18560876, a: 1}
-    key2: {r: 0.097454615, g: 0.1566993, b: 0.2830189, a: 0}
-    key3: {r: 0.8320799, g: 0.036203206, b: 0.1437394, a: 0}
+    key2: {r: 0.09803922, g: 0.28235295, b: 0.2666623, a: 0}
+    key3: {r: 0.05098039, g: 0.11948349, b: 0.1882353, a: 0}
     key4: {r: 0.007843137, g: 0.07614957, b: 0.12156863, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 193
-    ctime1: 25636
-    ctime2: 54356
-    ctime3: 41634
+    ctime1: 24865
+    ctime2: 47802
+    ctime3: 65535
     ctime4: 65535
     ctime5: 0
     ctime6: 0
@@ -288,7 +420,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 3
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
 --- !u!23 &1018450103
 MeshRenderer:
@@ -456,21 +588,21 @@ MonoBehaviour:
   _resolution: 256
   _wrapMode: 0
   _iterationDelay: 0.01
-  _decayStep: 0.1
+  _decayStep: 0.002
   _gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 0.8837677, b: 0.2216981, a: 1}
-    key2: {r: 1, g: 0.5729936, b: 0.1745283, a: 0}
-    key3: {r: 0.8320799, g: 0.036203206, b: 0.1437394, a: 0}
+    key1: {r: 1, g: 0.5851397, b: 0, a: 1}
+    key2: {r: 0.13163048, g: 0.2651299, b: 0.3207547, a: 0}
+    key3: {r: 0.11483921, g: 0.080366686, b: 0.13207549, a: 0}
     key4: {r: 0.007843137, g: 0.07614957, b: 0.12156863, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 2891
-    ctime1: 5783
-    ctime2: 26021
-    ctime3: 41634
+    ctime0: 9638
+    ctime1: 25829
+    ctime2: 44333
+    ctime3: 65535
     ctime4: 65535
     ctime5: 65150
     ctime6: 65150
@@ -484,7 +616,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 5
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   _randomStep: 0.5
 --- !u!1 &1664585459
@@ -522,13 +654,13 @@ MonoBehaviour:
   _renderer: {fileID: 1664585461}
   _resolution: 256
   _wrapMode: 0
-  _iterationDelay: 0.1
-  _decayStep: 0.1
+  _iterationDelay: 0.01
+  _decayStep: 0.002
   _gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
     key1: {r: 1, g: 0.8759049, b: 0, a: 1}
-    key2: {r: 0.19531456, g: 0.11222855, b: 0.24528301, a: 0}
+    key2: {r: 0.29176834, g: 0.1992257, b: 0.3490566, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -536,7 +668,7 @@ MonoBehaviour:
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 193
     ctime1: 27949
-    ctime2: 58403
+    ctime2: 59753
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -612,12 +744,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664585459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000017136335, y: 9.381183, z: 5.7443175e-16}
+  m_LocalPosition: {x: 9.381182, y: 9.381183, z: 5.7443175e-16}
   m_LocalScale: {x: 9.381183, y: 9.381183, z: 9.381183}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119996664
 GameObject:

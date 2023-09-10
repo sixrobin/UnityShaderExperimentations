@@ -1,0 +1,53 @@
+#pragma kernel Init
+#pragma kernel Iterate
+#pragma kernel ApplyBuffer
+
+RWTexture2D<float4> Result;
+sampler2D GridBuffer;
+float Resolution;
+float DecayStep;
+float InitRandomStep;
+
+float random(float2 range)
+{
+    return frac(sin(dot(range.xy, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+[numthreads(8,8,1)]
+void Init(uint3 id : SV_DispatchThreadID)
+{
+    Result[id.xy] = float4(step(random(id.xy), InitRandomStep).xxx, 1);
+}
+
+[numthreads(8,8,1)]
+void Iterate(uint3 id : SV_DispatchThreadID)
+{
+    float4 pos = float4(id.x / Resolution, id.y / Resolution, 0, 0);
+    float state = tex2Dlod(GridBuffer, pos).r;
+    float delta = 1.0 / Resolution;
+    
+    float neighbours = 0;
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(-delta, -delta, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(-delta, 0, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(-delta, delta, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(0, delta, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(delta, delta, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(delta, 0, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(delta, -delta, 0, 0)).x);
+    neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(0, -delta, 0, 0)).x);
+    
+    if (state < 1 && neighbours == 2)
+        state = 1;
+    else
+        state -= DecayStep;
+    
+    Result[id.xy] = float4(state.xxx, 1);
+}
+
+[numthreads(8,8,1)]
+void ApplyBuffer(uint3 id : SV_DispatchThreadID)
+{
+    float4 pos = float4(id.x / Resolution, id.y / Resolution, 0, 0);
+    float4 buffer = tex2Dlod(GridBuffer, pos);
+    Result[id.xy] = buffer;
+}
