@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class GameOfLife : MonoBehaviour
+public class BriansBrain : MonoBehaviour
 {
-    [SerializeField]
-    private ComputeShader _randomComputeShader;
     [SerializeField]
     private ComputeShader _computeShader;
     [SerializeField]
     private Renderer _renderer;
     
-    [SerializeField, Range(0f, 1f)]
-    private float _randomStep = 0.5f;
     [SerializeField, Min(32)]
     private int _resolution = 32;
     [SerializeField, Min(0f)]
@@ -42,13 +38,13 @@ public class GameOfLife : MonoBehaviour
     
     private void Start()
     {
-        this._grid = new RenderTexture(this._resolution, this._resolution, 0, RenderTextureFormat.ARGB32)
+        this._grid = new RenderTexture(this._resolution, this._resolution, 0, RenderTextureFormat.ARGBFloat)
         {
             enableRandomWrite = true,
             filterMode = FilterMode.Point
         };
         
-        this._gridBuffer = new RenderTexture(this._resolution, this._resolution, 0, RenderTextureFormat.ARGB32)
+        this._gridBuffer = new RenderTexture(this._resolution, this._resolution, 0, RenderTextureFormat.ARGBFloat)
         {
             enableRandomWrite = true,
             filterMode = FilterMode.Point
@@ -59,7 +55,6 @@ public class GameOfLife : MonoBehaviour
         
         this._computeShader.SetFloat("Resolution", this._resolution);
 
-        this._computeShader.SetFloat("InitRandomStep", this._randomStep);
         this._computeShader.SetTexture(0, "Result", this._gridBuffer);
         this._computeShader.Dispatch(0, this._resolution / 8, this._resolution / 8, 1);
 
