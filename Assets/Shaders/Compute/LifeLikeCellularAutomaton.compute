@@ -4,6 +4,8 @@
 
 RWTexture2D<float4> Result;
 sampler2D GridBuffer;
+int2 Rules;
+
 float Resolution;
 float DecayStep;
 float InitRandomStep;
@@ -26,7 +28,7 @@ void Iterate(uint3 id : SV_DispatchThreadID)
     float state = tex2Dlod(GridBuffer, pos).r;
     float delta = 1.0 / Resolution;
     
-    float neighbours = 0;
+    int neighbours = 0;
     neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(-delta, -delta, 0, 0)).x);
     neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(-delta, 0, 0, 0)).x);
     neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(-delta, delta, 0, 0)).x);
@@ -35,17 +37,19 @@ void Iterate(uint3 id : SV_DispatchThreadID)
     neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(delta, 0, 0, 0)).x);
     neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(delta, -delta, 0, 0)).x);
     neighbours += step(0.99999, tex2Dlod(GridBuffer, pos + float4(0, -delta, 0, 0)).x);
+
+    neighbours = pow(2, neighbours);
     
-    if (state < 1)
+    if (state < 1) // Dead.
     {
-        if (neighbours == 3 || neighbours >= 6)
+        if ((neighbours & Rules.x) != 0)
             state = 1;
         else
             state -= DecayStep;
     }
-    else
+    else // Alive.
     {
-        if (neighbours == 3 || neighbours == 4 || neighbours >= 6)
+        if ((neighbours & Rules.y) != 0)
             state = 1;
         else
             state -= DecayStep;

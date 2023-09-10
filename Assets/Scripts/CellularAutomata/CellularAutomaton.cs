@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[DisallowMultipleComponent]
 public abstract class CellularAutomaton : MonoBehaviour
 {
     [SerializeField]
@@ -29,19 +28,19 @@ public abstract class CellularAutomaton : MonoBehaviour
     private float _timer;
     private Texture2D _ramp;
 
-    public enum E_Resolution
+    private enum E_Resolution
     {
-        [InspectorName("8")] _8 = 8,
-        [InspectorName("16")] _16 = 16,
-        [InspectorName("32")] _32 = 32,
-        [InspectorName("64")] _64 = 64,
-        [InspectorName("128")] _128 = 128,
-        [InspectorName("256")] _256 = 256,
-        [InspectorName("512")] _512 = 512,
-        [InspectorName("1024")] _1024 = 1024,
-        [InspectorName("2048")] _2048 = 2048,
-        [InspectorName("4096")] _4096 = 4096,
-        [InspectorName("8192")] _8192 = 8192,
+        [InspectorName("8")]     _8 = 8,
+        [InspectorName("16")]    _16 = 16,
+        [InspectorName("32")]    _32 = 32,
+        [InspectorName("64")]    _64 = 64,
+        [InspectorName("128")]   _128 = 128,
+        [InspectorName("256")]   _256 = 256,
+        [InspectorName("512")]   _512 = 512,
+        [InspectorName("1024")]  _1024 = 1024,
+        [InspectorName("2048")]  _2048 = 2048,
+        [InspectorName("4096")]  _4096 = 4096,
+        [InspectorName("8192")]  _8192 = 8192,
         [InspectorName("16384")] _16384 = 16384,
     }
     
@@ -65,6 +64,9 @@ public abstract class CellularAutomaton : MonoBehaviour
         
         this._grid.Create();
         this._gridBuffer.Create();
+
+        // Create a compute shader copy so that every instance can have its own parameters.
+        this._computeShader = Instantiate(this._computeShader);
         
         this._computeShader.SetFloat("Resolution", this.Resolution);
         this._computeShader.SetFloat("DecayStep", this._decayStep);
@@ -88,14 +90,11 @@ public abstract class CellularAutomaton : MonoBehaviour
         this._ramp = new Texture2D(32, 1, TextureFormat.RGBAFloat, false)
         {
             wrapMode = TextureWrapMode.Clamp,
-            filterMode = FilterMode.Point
+            filterMode = FilterMode.Point,
         };
         
         for (int x = 0; x < this._ramp.width; ++x)
-        {
-            Color color = this._gradient.Evaluate(x / (float)this._ramp.width);
-            this._ramp.SetPixel(x, 0, color);
-        }
+            this._ramp.SetPixel(x, 0, this._gradient.Evaluate(x / (float)this._ramp.width));
         
         this._ramp.Apply();
         this._renderer.material.SetTexture(RAMP_SHADER_ID, this._ramp);
