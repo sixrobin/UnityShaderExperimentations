@@ -18,8 +18,8 @@ void Init(uint3 id : SV_DispatchThreadID)
     float value = random(id.xy);
     
     if (value < 0.5) value = 0;
-    else if (value < 0.75) value = 1;
-    else value = 2;
+    else if (value < 0.75) value = 0.5;
+    else value = 1;
 
     Result[id.xy] = value;
 }
@@ -30,63 +30,26 @@ void Iterate(uint3 id : SV_DispatchThreadID)
     float4 pos = float4(id.x / Resolution, id.y / Resolution, 0, 0);
     float state = tex2Dlod(GridBuffer, pos).r;
     float delta = 1.0 / Resolution;
-    
+
     float onNeighbours = 0;
-    float offNeighbours = 0;
-    float dyingNeighbours = 0;
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(-delta, -delta, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(-delta, 0, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(-delta, delta, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(0, delta, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(delta, delta, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(delta, 0, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(delta, -delta, 0, 0)).x);
+    onNeighbours += step(0.9, tex2Dlod(GridBuffer, pos + float4(0, -delta, 0, 0)).x);
 
-    float neighbour1 = tex2Dlod(GridBuffer, pos + float4(-delta, -delta, 0, 0)).x;
-    float neighbour2 = tex2Dlod(GridBuffer, pos + float4(-delta, 0, 0, 0)).x;
-    float neighbour3 = tex2Dlod(GridBuffer, pos + float4(-delta, delta, 0, 0)).x;
-    float neighbour4 = tex2Dlod(GridBuffer, pos + float4(0, delta, 0, 0)).x;
-    float neighbour5 = tex2Dlod(GridBuffer, pos + float4(delta, delta, 0, 0)).x;
-    float neighbour6 = tex2Dlod(GridBuffer, pos + float4(delta, 0, 0, 0)).x;
-    float neighbour7 = tex2Dlod(GridBuffer, pos + float4(delta, -delta, 0, 0)).x;
-    float neighbour8 = tex2Dlod(GridBuffer, pos + float4(0, -delta, 0, 0)).x;
-
-    if (neighbour1 < 0.5) offNeighbours++;
-    else if (neighbour1 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-
-    if (neighbour2 < 0.5) offNeighbours++;
-    else if (neighbour2 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-    
-    if (neighbour3 < 0.5) offNeighbours++;
-    else if (neighbour3 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-    
-    if (neighbour4 < 0.5) offNeighbours++;
-    else if (neighbour4 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-    
-    if (neighbour5 < 0.5) offNeighbours++;
-    else if (neighbour5 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-
-    if (neighbour6 < 0.5) offNeighbours++;
-    else if (neighbour6 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-
-    if (neighbour7 < 0.5) offNeighbours++;
-    else if (neighbour7 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-
-    if (neighbour8 < 0.5) offNeighbours++;
-    else if (neighbour8 > 1.5) onNeighbours++;
-    else dyingNeighbours++;
-
-    if (state < 0.5 && onNeighbours == 2)
+    if (state < 0.1 && onNeighbours == 2)
     {
-        state = 2;
-    }
-    else if (state > 1.5)
-    {
+        // "Off" cell with 2 "on" neighbours goes alive.
         state = 1;
     }
     else
     {
-        state = 0;
+        // "On" and "dying" cells decay each iteration ("on" become "dying", "dying become "off").
+        state -= 0.5;
     }
     
     Result[id.xy] = float4(state.xxx, 1);
