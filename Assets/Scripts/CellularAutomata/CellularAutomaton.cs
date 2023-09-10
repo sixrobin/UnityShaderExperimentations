@@ -69,14 +69,16 @@ public abstract class CellularAutomaton : MonoBehaviour
         this._computeShader = Instantiate(this._computeShader);
         
         this._computeShader.SetFloat("Resolution", this.Resolution);
-        this._computeShader.SetFloat("DecayStep", this._decayStep);
         
         this.InitRampTexture();
         
         this._renderer.material.SetTexture(MAIN_TEX_SHADER_ID, this._grid);
     }
-    
-    protected abstract void Next();
+
+    protected virtual void Next()
+    {
+        this._computeShader.SetFloat("DecayStep", this._decayStep);
+    }
 
     protected virtual void ApplyTextureBuffer()
     {

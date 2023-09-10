@@ -14,6 +14,8 @@ public class BriansBrain : CellularAutomaton
 
     protected override void Next()
     {
+        base.Next();
+
         this._computeShader.SetTexture(1, "Result", this._grid);
         this._computeShader.SetTexture(1, "GridBuffer", this._gridBuffer);
         this._computeShader.Dispatch(1, this.Resolution / 8, this.Resolution / 8, 1);
