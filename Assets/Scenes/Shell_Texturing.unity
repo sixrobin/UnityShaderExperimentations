@@ -248,7 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _quadPrefab: {fileID: 1879440918}
   _shellLayerMaterial: {fileID: 2100000, guid: 90eaed0e79631b849b9e85ec5437fea7, type: 2}
-  _height: 1
+  _downColor: {r: 0.021982905, g: 0.24528301, b: 0.13458247, a: 1}
+  _upColor: {r: 0.31016377, g: 0.7735849, b: 0.3877065, a: 1}
+  _resolution: 128
+  _height: 0.04
   _count: 10
   _seed: -1
   _maskInitRandomStep: 0.9
