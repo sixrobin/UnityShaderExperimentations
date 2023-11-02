@@ -65,7 +65,7 @@ public class LifeLikeCellularAutomaton : CellularAutomaton
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"Could not parse rules {rules}! Make sure rules format is B[x]/S[x].");
+            Debug.LogError($"Could not parse rules {rules}! Make sure rules format is B[x]/S[x].\nException message: {e}");
             parsedRules = Vector2Int.zero;
         }
 

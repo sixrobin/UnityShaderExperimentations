@@ -248,11 +248,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _quadPrefab: {fileID: 1879440918}
   _shellLayerMaterial: {fileID: 2100000, guid: 90eaed0e79631b849b9e85ec5437fea7, type: 2}
-  _downColor: {r: 0.021982905, g: 0.24528301, b: 0.13458247, a: 1}
+  _randomComputeShader: {fileID: 7200000, guid: 312ca317c1358d1429e2dad382c44363, type: 3}
+  _downColor: {r: 0.01601993, g: 0.3773585, b: 0.20132191, a: 1}
   _upColor: {r: 0.31016377, g: 0.7735849, b: 0.3877065, a: 1}
+  _colorGradientCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.7962964
+      outSlope: 1.7962964
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1580756
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.6531988
+      outSlope: 0.6531988
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.094501734
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _downRadius: 1
+  _upRadius: 0
+  _radiusCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _resolution: 128
   _height: 0.04
-  _count: 10
+  _count: 50
   _seed: -1
   _maskInitRandomStep: 0.9
   _maskLastRandomStep: 0.1

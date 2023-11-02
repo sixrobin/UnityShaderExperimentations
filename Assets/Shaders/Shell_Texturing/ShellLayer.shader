@@ -3,7 +3,6 @@ Shader "USB/Shell Layer"
     Properties
     {
         _Mask ("Mask", 2D) = "white" {}
-        _Color ("Color", Color) = (0,1,0,1)
     }
     
     SubShader
@@ -13,6 +12,7 @@ Shader "USB/Shell Layer"
             "RenderType"="Opaque"
         }
         
+        Cull Off
         LOD 100
 
         Pass
@@ -38,7 +38,9 @@ Shader "USB/Shell Layer"
 
             sampler2D _Mask;
             float4 _Mask_ST;
+            float4 _Mask_TexelSize;
             float4 _Color;
+            float _Radius;
 
             v2f vert(appdata v)
             {
@@ -52,6 +54,10 @@ Shader "USB/Shell Layer"
             {
                 fixed4 mask = tex2D(_Mask, i.uv);
                 clip(mask - 0.5);
+
+                float2 maskCellUV = (frac(i.uv / _Mask_TexelSize.xy) - 0.5) * 2;
+                clip(_Radius - length(maskCellUV));
+
                 return _Color;
             }
             
