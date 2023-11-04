@@ -42,6 +42,11 @@ Shader "USB/Shell Layer"
             float4 _Color;
             float _Radius;
 
+            float _ShellIndex;
+            float _ShellsCount;
+            float _StepMin;
+            float _StepMax;
+
             v2f vert(appdata v)
             {
                 v2f o;
@@ -52,12 +57,13 @@ Shader "USB/Shell Layer"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 mask = tex2D(_Mask, i.uv);
-                clip(mask - 0.5);
+                float heightPercentage = _ShellIndex / _ShellsCount;
+                float centerDistance = length((frac(i.uv / _Mask_TexelSize.xy) - 0.5) * 2);
+                fixed shellRandomValue = lerp(_StepMin, _StepMax, tex2D(_Mask, i.uv).x);
 
-                float2 maskCellUV = (frac(i.uv / _Mask_TexelSize.xy) - 0.5) * 2;
-                clip(_Radius - length(maskCellUV));
-
+                if (centerDistance > _Radius * (shellRandomValue - heightPercentage) && _ShellIndex > 0)
+                    discard;
+                
                 return _Color;
             }
             

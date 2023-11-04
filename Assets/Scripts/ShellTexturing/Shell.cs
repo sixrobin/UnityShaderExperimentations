@@ -20,22 +20,15 @@ public class Shell : MonoBehaviour
     private Color _upColor = Color.white;
     [SerializeField, FoldoutGroup("Color")]
     private AnimationCurve _colorGradientCurve;
-
-    [SerializeField, Range(0f, 1f), FoldoutGroup("Radius")]
-    private float _downRadius = 1f;
-    [SerializeField, Range(0f, 1f), FoldoutGroup("Radius")]
-    private float _upRadius = 0f;
-    [SerializeField, FoldoutGroup("Radius")]
-    private AnimationCurve _radiusCurve;
-
+    
     [SerializeField, Min(32), FoldoutGroup("Settings")]
     private int _resolution = 32;
     [SerializeField, FoldoutGroup("Settings")]
     private float _height;
     [SerializeField, Min(2), FoldoutGroup("Settings")]
     private int _count;
-    [SerializeField, FoldoutGroup("Settings")]
-    private int _seed = -1;
+    [SerializeField, Min(0f), FoldoutGroup("Settings")]
+    private float _radius = 1f;
     [SerializeField, Range(0f, 1f), FoldoutGroup("Settings")]
     private float _maskInitRandomStep = 0.9f;
     [SerializeField, Range(0f, 1f), FoldoutGroup("Settings")]
@@ -63,7 +56,6 @@ public class Shell : MonoBehaviour
             filterMode = FilterMode.Point,
         };
         
-        this._randomComputeShader.SetFloat("Step", (this._maskInitRandomStep - this._maskLastRandomStep) / (this._count - 1) * index);
         this._randomComputeShader.SetTexture(0, "Result", layerTexture);
         this._randomComputeShader.Dispatch(0, this._resolution / 8, this._resolution / 8, 1);
         
@@ -72,6 +64,10 @@ public class Shell : MonoBehaviour
     
     private void GenerateQuads()
     {
+        this._resolution = Mathf.Min(this._resolution, 1024);
+        
+        // TODO: Add a simple quad below to fake an actual ground.
+        
         float step = this._height / (this._count - 1);
         for (int i = 0; i < this._count; ++i)
             this.GenerateQuad(i, step * i);
@@ -83,14 +79,17 @@ public class Shell : MonoBehaviour
         quadInstance.transform.Translate(Vector3.up * height, Space.World);
 
         float percentage = index / (float)(this._count - 1);
-        
         Color color = Color.Lerp(this._downColor, this._upColor, this._colorGradientCurve.Evaluate(percentage));
-        float radius = Mathf.Lerp(this._downRadius, this._upRadius, this._radiusCurve.Evaluate(percentage));
         
         Material quadMaterial = new(this._shellLayerMaterial);
         quadMaterial.SetTexture(MASK_SHADER_ID, this.GenerateMask(index));
         quadMaterial.SetColor(COLOR_SHADER_ID, color);
-        quadMaterial.SetFloat(RADIUS_SHADER_ID, radius);
+        quadMaterial.SetFloat(RADIUS_SHADER_ID, this._radius);
+        quadMaterial.SetFloat("_ShellIndex", index);
+        quadMaterial.SetFloat("_ShellsCount", this._count);
+        quadMaterial.SetFloat("_StepMin", this._maskInitRandomStep);
+        quadMaterial.SetFloat("_StepMax", this._maskLastRandomStep);
+        
         quadInstance.GetComponent<MeshRenderer>().material = quadMaterial;
 
         return quadInstance;
