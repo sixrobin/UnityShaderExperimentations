@@ -1,2 +1,2 @@
 # USB
-Unity Shaders Bible training.
+Shader stuff experimentation using Unity Shader Bible book.
