@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Black_Hole.unity
+    path: Assets/BlackHole/BlackHole.unity
     guid: 9604e04649d7bdf429d2fcbef1946f3e
   m_configObjects: {}
