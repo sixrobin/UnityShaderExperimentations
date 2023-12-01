@@ -35,8 +35,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _AnimatedRaindropsSpeed: 1
-    - _Glossiness: 0.495
+    - _Glossiness: 0.5
     - _Metallic: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6603774, g: 0.38937345, b: 0.41077864, a: 1}
   m_BuildTextureStacks: []
