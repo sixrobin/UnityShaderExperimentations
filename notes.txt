@@ -18,4 +18,5 @@ Idées de shaders à faire :
 - Trou noir
 - Boule à neige
 - Truc dégueu avec des yeux qui s'ouvrent et se ferment avec le temps
+- Carte YGO avec stencil
 - https://www.febucci.com/2018/09/world-reveal-shader/

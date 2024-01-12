@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PSX_Ground
+  m_Name: PSX_Wall
   m_Shader: {fileID: 4800000, guid: 6cd7924f3a9bf6f41b5ace2082e89600, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1d3111a1d01d5cf4a87d1c9b312e0089, type: 3}
+        m_Texture: {fileID: 2800000, guid: c51f4af737ebe3945973cf401776dd1e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
