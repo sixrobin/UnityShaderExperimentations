@@ -4,6 +4,7 @@ Shader stuff experimentation using Unity Shader Bible book and some other resour
 Here's some gifs of what's inside the project. Please keep in mind that nothing is made to be fully working for a game, everything is purely testing.
 
 ## Shader balls with many different effects
+Some of the effects can only be seen by changing parameters directly on the materials, which is why some of these spheres may seem strange.
 ![shader balls](https://github.com/sixrobin/ShaderExperimentations/assets/55784799/f85ed93e-ced2-4350-b151-0f923116ae40)
 
 ## Black hole
