@@ -2,7 +2,7 @@ Shader "Sprites/Outline"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
+        _OutlineColor ("Outline Color", Color) = (1,1,1,1)
 
         [Space(30)]
 
@@ -18,47 +18,47 @@ Shader "Sprites/Outline"
         _DistortionIntensity ("Distortion Intensity", Float) = 1
 
         [PerRendererData] [HideInInspector] _MainTex ("Texture", 2D) = "white" {}
+        _Color ("Tint", Color) = (1,1,1,1)
+        [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
+        [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
+        [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
+        [PerRendererData] _AlphaTex ("External Alpha", 2D) = "white" {}
+        [PerRendererData] _EnableExternalAlpha ("Enable External Alpha", Float) = 0
     }
     
     SubShader
     {
         Tags
         {
-            "RenderType"="Transparent"
             "Queue"="Transparent"
+            "IgnoreProjector"="True"
+            "RenderType"="Transparent"
+            "PreviewType"="Plane"
+            "CanUseSpriteAtlas"="True"
         }
         
-        Blend SrcAlpha OneMinusSrcAlpha
+        Cull Off
+        Lighting Off
         ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
         
         Pass
         {
             CGPROGRAM
             
-            #pragma vertex vert
+            #pragma vertex SpriteVert
             #pragma fragment frag
+            #pragma multi_compile_instancing
+            #pragma multi_compile_local _ PIXELSNAP_ON
+            #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 
             #include "UnityCG.cginc"
+            #include "UnitySprites.cginc"
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv     : TEXCOORD0;
-                float4 color  : COLOR;
-            };
-
-            struct v2f
-            {
-                float4 vertex : SV_POSITION;
-                float2 uv     : TEXCOORD0;
-                float4 color  : COLOR;
-            };
-
-            sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _MainTex_TexelSize;
 
-            float4 _Color;
+            float4 _OutlineColor;
             
             float _OutlineThickness;
             float _OutlineIntensity;
@@ -72,15 +72,6 @@ Shader "Sprites/Outline"
             sampler2D _DistortionNoise;
             float4 _DistortionNoise_ST;
             float _DistortionIntensity;
-
-            v2f vert(appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.color = v.color;
-                return o;
-            }
 
             fixed4 frag(v2f i) : SV_Target
             {
@@ -105,19 +96,19 @@ Shader "Sprites/Outline"
                     0.003765, 0.015019, 0.023792, 0.015019, 0.003765,
                 };
 
-                float4 mainColor = tex2D(_MainTex, i.uv) * i.color;
+                float4 mainColor = tex2D(_MainTex, i.texcoord) * i.color;
 
                 float noiseSum = 0;
                 [unroll]
                 for (int j = 0; j < 25; j++)
-                    noiseSum += tex2Dlod(_MainTex, float4(i.uv + offset[j], 0, _SampledMipLevel)).a * kernel[j];
+                    noiseSum += tex2Dlod(_MainTex, float4(i.texcoord + offset[j], 0, _SampledMipLevel)).a * kernel[j];
 
-                float distortion = lerp(1, tex2D(_DistortionNoise, i.uv * _DistortionNoise_ST.xy + _DistortionNoise_ST.zw * _Time.y).r, _DistortionIntensity);
+                float distortion = lerp(1, tex2D(_DistortionNoise, i.texcoord * _DistortionNoise_ST.xy + _DistortionNoise_ST.zw * _Time.y).r, _DistortionIntensity);
                 noiseSum *= distortion;
                 noiseSum *= _OutlineIntensity;
-                noiseSum *= smoothstep(_HeightFadeMin, _HeightFadeMax, i.uv.y);
+                noiseSum *= smoothstep(_HeightFadeMin, _HeightFadeMax, i.texcoord.y);
                 
-                float4 outline = lerp(float4(_Color.rgb, 0), _Color, smoothstep(_AlphaClipSmoothMin, _AlphaClipSmoothMax, noiseSum));
+                float4 outline = lerp(float4(_OutlineColor.rgb, 0), _OutlineColor, smoothstep(_AlphaClipSmoothMin, _AlphaClipSmoothMax, noiseSum));
 
                 return lerp(outline, mainColor, mainColor.a);
             }
