@@ -8,6 +8,9 @@ Some of the effects can only be seen by changing parameters directly on the mate
 
 ![shader balls](https://github.com/sixrobin/ShaderExperimentations/assets/55784799/f85ed93e-ced2-4350-b151-0f923116ae40)
 
+## Sprite outline
+![outlines-ezgif com-optimize](https://github.com/sixrobin/ShaderExperimentations/assets/55784799/a2ea109a-0a0d-461d-86a6-e6b43a9ae69a)
+
 ## Black hole
 ![black hole](https://github.com/sixrobin/ShaderExperimentations/assets/55784799/04d9daa5-0f7c-4b1d-8eab-efcde7f7ccc5)
 
