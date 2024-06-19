@@ -1,4 +1,4 @@
-# Shader Experimentations
+# Unity Shader Experimentations
 Shader stuff experimentation using Unity Shader Bible book and some other resources. Also includes some personal testing stuff.
 
 Here's some gifs of what's inside the project. Please keep in mind that nothing is made to be fully working for a game, everything is purely testing.
